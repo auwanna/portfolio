@@ -30,11 +30,11 @@ const songs = [
   },
 ] as const;
 
-const artwork = {
+const artwork: Record<string, string> = {
   great,
   grand,
   glorious,
-};
+} as const;
 
 export const Route = createFileRoute("/")({
   component: () => {

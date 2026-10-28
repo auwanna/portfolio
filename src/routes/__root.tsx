@@ -4,7 +4,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import favicon from "@/assets/images/avatar.png";
-import og from "@/assets/images/og.png?url";
+import og from "@/assets/images/og.png";
 import css from "@/assets/styles/app.css?url";
 import { getClientEnv } from "@/lib/env/client";
 import { seo } from "@/lib/seo";
