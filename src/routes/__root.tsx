@@ -2,6 +2,7 @@
 
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { Outlet, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Analytics } from "@vercel/analytics/react";
 
 import favicon from "@/assets/images/avatar.png";
 import og from "@/assets/images/og.png";
@@ -52,6 +53,7 @@ export const Route = createRootRoute({
           </div>
 
           <TanStackDevtools />
+          <Analytics />
           <Scripts />
         </body>
       </html>
