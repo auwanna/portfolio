@@ -8,11 +8,18 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  format:
+  check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # 7.0.1
+        with:
+          persist-credentials: false
 
       - uses: pnpm/action-setup@d9184bf108216479bc5a137cc391f4d7b14c870b # 6.1.0
 
