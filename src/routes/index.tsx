@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import glorious from "@/assets/images/artwork/glorious.png";
 import grand from "@/assets/images/artwork/grand.png";
 import great from "@/assets/images/artwork/great.png";
-import { IconArrowRight, IconGithub, IconSpotify } from "@/components/icons";
+import { IconArrowSquareIn, IconGithub, IconSpotify } from "@/components/icons";
 import { ExternalLink } from "@/components/link";
 import { Section } from "@/components/ui/section";
 import { TypographyH1, TypographyH2, TypographyP } from "@/components/ui/typography";
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
   component: () => {
     return (
       <div className="mx-auto flex min-h-dvh max-w-lg flex-col">
-        <main className="mt-48 flex flex-col gap-4 px-3">
+        <main className="mt-48 flex flex-col gap-4 px-3 max-sm:px-6">
           <TypographyH1 className="uppercase">jacob</TypographyH1>
           <Section>
             <TypographyH2 className="flex items-center justify-between">
@@ -64,7 +64,7 @@ export const Route = createFileRoute("/")({
                     <li key={project.name}>
                       <ExternalLink
                         href={project.href}
-                        className="group flex w-full translate-0 items-center pr-2 opacity-100 starting:translate-y-5 starting:opacity-0"
+                        className="group flex w-full items-center pr-2"
                       >
                         <div className="flex grow gap-3 pl-2 transition-[translate] group-hover:translate-x-3">
                           <div className="text-muted flex flex-col items-end gap-1">
@@ -83,7 +83,7 @@ export const Route = createFileRoute("/")({
                           </div>
                         </div>
                         <span className="ease-fluid mt-1 scale-100 self-start opacity-0 transition-[scale,opacity,translate] group-hover:translate-x-1 group-hover:scale-110 group-hover:opacity-100 group-hover:delay-0 group-focus-visible:translate-x-1 group-focus-visible:scale-110 group-focus-visible:opacity-100 group-focus-visible:delay-0">
-                          <IconArrowRight
+                          <IconArrowSquareIn
                             className="icon text-muted size-[1em] stroke-2"
                             aria-label="go to link"
                           />
@@ -120,7 +120,6 @@ export const Route = createFileRoute("/")({
               })}
             </ul>
           </Section>
-
           <Section>
             <TypographyH2 className="flex items-center justify-between">
               <span>listen.</span>
@@ -138,7 +137,7 @@ export const Route = createFileRoute("/")({
                   <li key={song.title}>
                     <ExternalLink
                       href={song.link}
-                      className="group flex w-full translate-0 items-center gap-1 py-1 pr-2 opacity-100 focus-visible:outline-offset-4 starting:translate-y-5 starting:opacity-0"
+                      className="group flex w-full items-center gap-1 py-2 pr-2 focus-visible:outline-offset-4"
                     >
                       <div className="flex grow gap-3 font-sans transition-[translate] group-hover:translate-x-3">
                         <div className="overflow-hidden rounded-xl drop-shadow-md">
@@ -151,7 +150,7 @@ export const Route = createFileRoute("/")({
                       </div>
 
                       <span className="ease-fluid mt-1 scale-100 self-start opacity-0 transition-[scale,opacity,translate] group-hover:translate-x-1 group-hover:scale-110 group-hover:opacity-100 group-hover:delay-0 group-focus-visible:translate-x-1 group-focus-visible:scale-110 group-focus-visible:opacity-100 group-focus-visible:delay-0">
-                        <IconArrowRight
+                        <IconArrowSquareIn
                           className="icon text-muted size-[1em] stroke-2"
                           aria-label="go to link"
                         />
