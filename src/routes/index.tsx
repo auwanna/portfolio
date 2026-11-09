@@ -65,7 +65,7 @@ export const Route = createFileRoute("/")({
       <div className="mx-auto flex min-h-dvh max-w-lg flex-col gap-16">
         <main className="mt-16 flex flex-col gap-4 px-3 max-sm:px-6">
           <TypographyH1 className="uppercase">jacob</TypographyH1>
-          <Section>
+          <Section data-nosnippet>
             <div className="flex items-center justify-between">
               <TypographyH2>code.</TypographyH2>
               <ExternalLink
@@ -79,7 +79,7 @@ export const Route = createFileRoute("/")({
             <TypographyP variants={{ size: "sm" }}>What should I show...</TypographyP>
           </Section>
 
-          <Section>
+          <Section data-nosnippet>
             <div className="flex items-center justify-between">
               <TypographyH2>draw.</TypographyH2>
             </div>
@@ -105,7 +105,7 @@ export const Route = createFileRoute("/")({
               })}
             </ul>
           </Section>
-          <Section>
+          <Section data-nosnippet>
             <div className="flex items-center justify-between">
               <TypographyH2>listen.</TypographyH2>
               <ExternalLink
