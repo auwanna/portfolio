@@ -1,14 +1,14 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { cva, type VariantProps } from "@/cva";
 
-export const h1 = tv({
+export const h1 = cva({
   base: "font-display text-2xl font-bold",
 });
 
-export const h2 = tv({
+export const h2 = cva({
   base: "font-display my-4 text-xl font-bold",
 });
 
-export const p = tv({
+export const p = cva({
   base: "font-sans",
   variants: {
     size: {
@@ -22,35 +22,26 @@ export const p = tv({
   },
 });
 
-type TypographyH1Variants = VariantProps<typeof h1>;
+type TypographyH1Props = React.ComponentProps<"h1"> & {
+  variants?: VariantProps<typeof h1>;
+};
 
-interface TypographyH1Props extends TypographyH1Variants {
-  children: React.ReactNode;
-  className?: string;
+type TypographyH2Props = React.ComponentProps<"h2"> & {
+  variants?: VariantProps<typeof h2>;
+};
+
+type TypographyPProps = React.ComponentProps<"p"> & {
+  variants?: VariantProps<typeof p>;
+};
+
+export function TypographyH1({ variants, className, ...props }: TypographyH1Props) {
+  return <h1 className={h1({ ...variants, className })} {...props} />;
 }
 
-type TypographyH2Variants = VariantProps<typeof h2>;
-
-interface TypographyH2Props extends TypographyH2Variants {
-  children: React.ReactNode;
-  className?: string;
+export function TypographyH2({ variants, className, ...props }: TypographyH2Props) {
+  return <h2 className={h2({ ...variants, className })} {...props} />;
 }
 
-type TypographyPVariants = VariantProps<typeof p>;
-
-interface TypographyPProps extends TypographyPVariants {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export function TypographyH1({ children, className, ...variants }: TypographyH1Props) {
-  return <h1 className={h1({ ...variants, className })}>{children}</h1>;
-}
-
-export function TypographyH2({ children, className, ...variants }: TypographyH2Props) {
-  return <h2 className={h2({ ...variants, className })}>{children}</h2>;
-}
-
-export function TypographyP({ children, className, ...variants }: TypographyPProps) {
-  return <p className={p({ ...variants, className })}>{children}</p>;
+export function TypographyP({ variants, className, ...props }: TypographyPProps) {
+  return <p className={p({ ...variants, className })} {...props} />;
 }

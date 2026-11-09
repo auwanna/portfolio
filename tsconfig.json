@@ -10,7 +10,8 @@
     "strictNullChecks": true,
     "verbatimModuleSyntax": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/cva": ["./cva.config.ts"]
     }
   }
 }
