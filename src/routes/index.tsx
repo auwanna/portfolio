@@ -52,7 +52,8 @@ export const Route = createFileRoute("/")({
                 <IconGithub className="size-6" />
               </ExternalLink>
             </TypographyH2>
-            <nav aria-label="projects">
+            <TypographyP size="sm">What should I show..</TypographyP>
+            {/*<nav aria-label="projects">
               <ul
                 style={{ "--project-total": projects.length } as React.CSSProperties}
                 className="flex flex-col gap-2"
@@ -93,7 +94,7 @@ export const Route = createFileRoute("/")({
                   );
                 })}
               </ul>
-            </nav>
+            </nav>*/}
           </Section>
 
           <Section>
