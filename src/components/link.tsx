@@ -2,10 +2,18 @@ import type { ComponentProps } from "react";
 
 import { createLink, type LinkComponent } from "@tanstack/react-router";
 
-type ExternalLinkProps = React.ComponentProps<"a"> & { href: `https://${string}` };
+type ExternalLinkProps = React.ComponentProps<"a"> & { href: `https://${string}`; label?: string };
 
-function ExternalLink(props: ExternalLinkProps) {
-  return <a rel="noopener noreferrer" target="_blank" {...props} />;
+function ExternalLink({ label = "", children, ...props }: ExternalLinkProps) {
+  return (
+    <a rel="noopener noreferrer" target="_blank" {...props}>
+      {children}
+      <span className="sr-only" data-nosnippet>
+        {label ? `${label} ` : " "}
+        (opens in a new tab)
+      </span>
+    </a>
+  );
 }
 
 type BaseLinkComponentProps = ComponentProps<"a">;
@@ -20,4 +28,4 @@ const Link: LinkComponent<typeof BaseLinkComponent> = (props) => {
   return <Comp {...props} />;
 };
 
-export { ExternalLink, Link };
+export { ExternalLink, Link, type ExternalLinkProps };

@@ -43,7 +43,7 @@ export const Route = createRootRoute({
   },
   component: () => {
     return (
-      <html>
+      <html lang="en">
         <head>
           <HeadContent />
         </head>

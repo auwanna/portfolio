@@ -1,120 +1,104 @@
 import { createFileRoute } from "@tanstack/react-router";
+import * as React from "react";
 
 import glorious from "@/assets/images/artwork/glorious.png";
 import grand from "@/assets/images/artwork/grand.png";
 import great from "@/assets/images/artwork/great.png";
 import { IconArrowSquareIn, IconGithub, IconSpotify } from "@/components/icons";
-import { ExternalLink } from "@/components/link";
+import { ExternalLink, type ExternalLinkProps } from "@/components/link";
 import { Section } from "@/components/ui/section";
 import { TypographyH1, TypographyH2, TypographyP } from "@/components/ui/typography";
-import { projects, icons, socials } from "@/lib/links";
+import { socials } from "@/lib/links";
 
-const songs = [
+type Artist = {
+  name: string;
+  lang?: string;
+};
+
+type Song = {
+  title: string;
+  href: ExternalLinkProps["href"];
+  lang: string;
+  image: string;
+  artists: Artist[];
+};
+
+const songs: Song[] = [
   {
+    lang: "ja",
     title: "どうなったっていい",
-    artist: "Dannie May",
+    href: "https://www.youtube.com/watch?v=Y5qlKUAcv94",
     image: "https://i.scdn.co/image/ab67616d0000b273029961db9f594c213a7ff739?format=webp",
-    link: "https://www.youtube.com/watch?v=Y5qlKUAcv94",
+    artists: [{ name: "Dannie May", lang: "en" }],
   },
   {
+    lang: "en",
     title: "Wriggle",
-    artist: "Cosmo Sheldrake",
+    href: "https://www.youtube.com/watch?v=VpQhVl-WkHo",
     image: "https://i.scdn.co/image/ab67616d0000b273945a09a57d17ba084d94134f?format=webp",
-    link: "https://www.youtube.com/watch?v=VpQhVl-WkHo",
+    artists: [{ name: "Cosmo Sheldrake", lang: "en" }],
   },
   {
+    lang: "en",
     title: "Bad Bad News",
-    artist: "Leon Bridges",
     image: "https://i.scdn.co/image/ab67616d0000b273d8ba7edac14684336ba0f507?format=webp",
-    link: "https://www.youtube.com/watch?v=cztfyj1dVgk",
+    href: "https://www.youtube.com/watch?v=cztfyj1dVgk",
+    artists: [{ name: "Leon Bridges", lang: "en" }],
   },
-] as const;
+];
 
-const artwork: Record<string, string> = {
-  great,
-  grand,
-  glorious,
-} as const;
+type Image = {
+  src: string;
+  alt: string;
+  title: string;
+};
+
+const artwork: Image[] = [
+  { src: great, title: "great", alt: "poorly drawn stickman with a santa hat" },
+  { src: grand, title: "grand", alt: "poorly drawn gingerbread man" },
+  { src: glorious, title: "glorious", alt: "poorly drawn christmas tree" },
+];
 
 export const Route = createFileRoute("/")({
   component: () => {
     return (
-      <div className="mx-auto flex min-h-dvh max-w-lg flex-col">
-        <main className="mt-48 flex flex-col gap-4 px-3 max-sm:px-6">
+      <div className="mx-auto flex min-h-dvh max-w-lg flex-col gap-16">
+        <main className="mt-16 flex flex-col gap-4 px-3 max-sm:px-6">
           <TypographyH1 className="uppercase">jacob</TypographyH1>
           <Section>
-            <TypographyH2 className="flex items-center justify-between">
-              <span>code.</span>
+            <div className="flex items-center justify-between">
+              <TypographyH2>code.</TypographyH2>
               <ExternalLink
+                label={socials[0].label}
                 href={socials[0].href}
-                className="hover:text-primary focus-visible:text-primary"
+                className="hover:text-primary focus-visible:text-primary focus-visible:outline-primary -m-2 inline-flex rounded p-2 focus-visible:outline-2 focus-visible:outline-offset-2"
               >
-                <IconGithub className="size-6" />
+                <IconGithub className="size-6" aria-hidden="true" />
               </ExternalLink>
-            </TypographyH2>
-            <TypographyP size="sm">What should I show..</TypographyP>
-            {/*<nav aria-label="projects">
-              <ul
-                style={{ "--project-total": projects.length } as React.CSSProperties}
-                className="flex flex-col gap-2"
-              >
-                {projects.map((project, idx) => {
-                  const Icon = icons[project.category];
-
-                  return (
-                    <li key={project.name}>
-                      <ExternalLink
-                        href={project.href}
-                        className="group flex w-full items-center pr-2"
-                      >
-                        <div className="flex grow gap-3 pl-2 transition-[translate] group-hover:translate-x-3">
-                          <div className="text-muted flex flex-col items-end gap-1">
-                            <span className="font-display text-base italic tabular-nums">
-                              {`${idx + 1}`.padStart(2, "0")}.
-                            </span>
-                            <Icon className="icon size-4" />
-                          </div>
-                          <div className="flex flex-col gap-1">
-                            <span className="font-display self-start text-base font-medium tracking-tight lowercase">
-                              {project.name}.
-                            </span>
-                            <p className="group-hover:text-foreground text-muted text-sm lowercase transition-[color]">
-                              {project.summary}
-                            </p>
-                          </div>
-                        </div>
-                        <span className="ease-fluid mt-1 scale-100 self-start opacity-0 transition-[scale,opacity,translate] group-hover:translate-x-1 group-hover:scale-110 group-hover:opacity-100 group-hover:delay-0 group-focus-visible:translate-x-1 group-focus-visible:scale-110 group-focus-visible:opacity-100 group-focus-visible:delay-0">
-                          <IconArrowSquareIn
-                            className="icon text-muted size-[1em] stroke-2"
-                            aria-label="go to link"
-                          />
-                        </span>
-                      </ExternalLink>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>*/}
+            </div>
+            <TypographyP variants={{ size: "sm" }}>What should I show...</TypographyP>
           </Section>
 
           <Section>
-            <TypographyH2>draw.</TypographyH2>
-            <TypographyP size="sm">
+            <div className="flex items-center justify-between">
+              <TypographyH2>draw.</TypographyH2>
+            </div>
+            <TypographyP variants={{ size: "sm" }}>
               No artwork yet but imagine something great, grand, and glorious
             </TypographyP>
             <ul className="xs:grid-cols-3 grid grid-cols-2 gap-2 sm:ml-[calc(50%-min(100vw,var(--container-xl))/2)] sm:w-xl">
-              {["great", "grand", "glorious"].map((text) => {
+              {artwork.map((x) => {
                 return (
                   <li
-                    key={text}
+                    key={x.src}
                     className="border-border relative aspect-square overflow-hidden rounded-2xl border bg-black/10"
                   >
-                    <img
-                      src={artwork[text]}
-                      className="absolute bottom-0 z-0 [image-rendering:pixelated]"
-                    />
-                    <span className="font-display text-muted absolute -right-2 bottom-0 text-2xl uppercase opacity-40 select-none">
-                      {text}
+                    <img src={x.src} alt={x.alt} className="pixelated absolute bottom-0 z-0" />
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-muted absolute -right-2 bottom-0 text-2xl uppercase opacity-40 select-none"
+                    >
+                      {x.title}
                     </span>
                   </li>
                 );
@@ -122,65 +106,72 @@ export const Route = createFileRoute("/")({
             </ul>
           </Section>
           <Section>
-            <TypographyH2 className="flex items-center justify-between">
-              <span>listen.</span>
+            <div className="flex items-center justify-between">
+              <TypographyH2>listen.</TypographyH2>
               <ExternalLink
                 href={socials[1].href}
-                className="hover:text-primary focus-visible:text-primary"
+                label={socials[1].label}
+                className="hover:text-primary focus-visible:text-primary focus-visible:outline-primary -m-2 inline-flex rounded p-2 focus-visible:outline-2 focus-visible:outline-offset-2"
               >
-                <IconSpotify className="size-6" />
+                <IconSpotify className="size-6" aria-hidden="true" />
               </ExternalLink>
-            </TypographyH2>
-            <TypographyP size="sm">My favorite songs at the moment</TypographyP>
+            </div>
+            <TypographyP variants={{ size: "sm" }}>My favorite songs at the moment</TypographyP>
             <ul className="flex flex-col">
-              {songs.map((song) => {
-                return (
-                  <li key={song.title}>
-                    <ExternalLink
-                      href={song.link}
-                      className="group flex w-full items-center gap-1 py-2 pr-2 focus-visible:outline-offset-4"
-                    >
-                      <div className="flex grow gap-3 font-sans transition-[translate] group-hover:translate-x-3">
-                        <div className="overflow-hidden rounded-xl drop-shadow-md">
-                          <img src={song.image} className="aspect-square size-16" />
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          <TypographyP className="font-bold">{song.title}</TypographyP>
-                          <span className="text-muted text-sm">{song.artist}</span>
-                        </div>
+              {songs.map((song) => (
+                <li key={song.title}>
+                  <ExternalLink
+                    href={song.href}
+                    className="group flex w-full items-center gap-1 py-2 pr-2 focus-visible:outline-offset-4"
+                  >
+                    <div className="flex grow gap-3 font-sans transition-[translate] motion-safe:group-hover:translate-x-3">
+                      <div className="overflow-hidden rounded-xl drop-shadow-md">
+                        <img src={song.image} alt="" className="aspect-square size-16" />
                       </div>
+                      <div className="flex flex-col gap-1">
+                        <TypographyP className="font-bold" lang={song.lang}>
+                          {song.title}
+                        </TypographyP>
+                        <span className="text-muted text-sm">
+                          {song.artists.map((artist, index) => (
+                            <React.Fragment key={`${song.title}:${artist.name}:${index}`}>
+                              {index > 0 && (index === song.artists.length - 1 ? " & " : ", ")}
+                              <span lang={artist.lang}>{artist.name}</span>
+                            </React.Fragment>
+                          ))}
+                        </span>
+                      </div>
+                    </div>
 
-                      <span className="ease-fluid mt-1 scale-100 self-start opacity-0 transition-[scale,opacity,translate] group-hover:translate-x-1 group-hover:scale-110 group-hover:opacity-100 group-hover:delay-0 group-focus-visible:translate-x-1 group-focus-visible:scale-110 group-focus-visible:opacity-100 group-focus-visible:delay-0">
-                        <IconArrowSquareIn
-                          className="icon text-muted size-[1em] stroke-2"
-                          aria-label="go to link"
-                        />
-                      </span>
-                    </ExternalLink>
-                  </li>
-                );
-              })}
+                    <span
+                      aria-hidden="true"
+                      className="ease-fluid mt-1 scale-100 self-start opacity-0 transition-[scale,opacity,translate] group-hover:opacity-100 group-hover:delay-0 group-focus-visible:opacity-100 group-focus-visible:delay-0 motion-safe:group-hover:translate-x-1 motion-safe:group-hover:scale-110 motion-safe:group-focus-visible:translate-x-1 motion-safe:group-focus-visible:scale-110"
+                    >
+                      <IconArrowSquareIn className="icon text-muted size-[1em] stroke-2" />
+                    </span>
+                  </ExternalLink>
+                </li>
+              ))}
             </ul>
           </Section>
         </main>
-        <footer className="isolate mt-16 flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-base">
-          <nav aria-label="social links" className="mx-auto">
-            <ul className="flex flex-wrap items-center gap-2">
-              {socials.map((social) => {
-                return (
-                  <li key={social.label}>
+        <footer className="isolate flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-base">
+          <div className="mx-auto" data-nosnippet>
+            <nav aria-label="Social links">
+              <ul className="flex flex-wrap items-center gap-2">
+                {socials.map((social) => (
+                  <li key={social.name}>
                     <ExternalLink
                       href={social.href}
-                      title={social.label}
-                      className="text-muted text-sm font-bold lowercase underline-offset-2 transition-[color] hover:underline"
+                      className="hover:text-primary focus-visible:text-primary focus-visible:outline-primary -m-2 inline-flex rounded p-2 lowercase focus-visible:outline-2 focus-visible:outline-offset-2"
                     >
-                      <span>{social.label}</span>
+                      {social.name}
                     </ExternalLink>
                   </li>
-                );
-              })}
-            </ul>
-          </nav>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </footer>
       </div>
     );
